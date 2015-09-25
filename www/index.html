@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Getting Started with NoSQL</title>
+	<meta name="description" content="">
+	<meta name="author" content="Aaron Benton">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="bower_components/reveal-js/css/reveal.min.css">
+	<link rel="stylesheet" href="bower_components/reveal-js/css/theme/default.css" id="theme">
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="bower_components/reveal-js/lib/css/zenburn.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+		if( window.location.search.match( /print-pdf/gi ) ) {
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = 'bower_components/reveal-js/css/print/pdf.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		}
+	</script>
+	<!--[if lt IE 9]>
+	<script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<!-- start of slide -->
+		<section>
+			<h3>Getting Started with </h3>
+			<h1 class="no-transform">NoSQL</h1>
+			<p>
+				<small>Created by <a href="#">Aaron Benton</a> / <a href="http://twitter.com/bentonam">@bentonam</a></small>
+			</p>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide
+		<section>
+			<h2>About Me</h2>
+		</section>-->
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Topics</h2>
+			<ul>
+				<li>The problem with SQL</li>
+				<li>History of NoSQL</li>
+				<li>Database theories</li>
+				<li>Modeling</li>
+				<li>Patterns</li>
+			</ul>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>The Problem with SQL</h2>
+			<ul>
+				<li>Designed to run on large servers</li>
+				<li>Built for Vertical Scaling</li>
+				<li>Separated Models i.e. Tables</li>
+			</ul>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>In Development</h2>
+			<ul>
+				<li>
+					We assemble objects as a whole
+					<ul>
+						<li>Cart</li>
+						<li>Order</li>
+						<li>Profile</li>
+						<li>Product</li>
+					</ul>
+				</li>
+				<li>
+					Saving objects requires
+					<ul>
+						<li>Deconstructing</li>
+						<li>Multiple rows</li>
+						<li>Multiple tables</li>
+					</ul>
+			</ul>
+			<aside class="notes">
+				- Saving these objects can be abstracted from code by leveraging stored procedures
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Impedance Mistmatch</h2>
+			<blockquote class="fragment">
+				"The object-relational impedance mismatch is a set of conceptual and technical difficulties that are often encountered
+				when a relational database management system (RDBMS) is being used by a program written in an object-oriented
+				programming language or style, particularly when objects or class definitions are mapped in a straightforward way to
+				database tables or relational schema."
+				<cite>- Wikipedia</cite>
+			</blockquote>
+			<aside class="notes">
+				- Two different models<br />
+				- Leads to ORM
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<img src="assets/img/orm.jpg"/>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2 class="no-transform">Google BigTable</h2>
+			<br />
+			<h2 class="no-transform">Amazon DynamoDB</h2>
+			<aside class="notes">
+				- Were the first big unstructured data projects<br />
+				- Lead to NoSQL
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h1 class="no-transform">NoSQL</h1>
+			<aside class="notes">
+				- Where did the term NoSQL come from?
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h1 class="no-transform">No SQL</h1>
+			<aside class="notes">
+				- Does it mean No SQL at all?
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h1 class="no-transform"><u>N</u>ot <u>o</u>nly SQL</h1>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<img src="assets/img/chuck-norris.jpg">
+			<aside class="notes">
+				- Did it come from a Chuck Norris roundhouse kick to SQL?
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h1 class="no-shadow no-transform"><a href="#">#nosql</a></h1>
+			<aside class="notes">
+				- Eric Evans reintroduced the term NoSQL in early 2009 when
+				Johan Oskarsson of Last.fm organized an event to discuss open-source distributed databases
+				https://en.wikipedia.org/wiki/NoSQL
+			</aside>
+		</section>
+		<!-- end of slide -->
+
+		<!-- start of slide -->
+		<section>
+			<h2>What is NoSQL?</h2>
+			<ul class="fragment">
+				<li>non-relational</li>
+				<li>cluster friendly</li>
+				<li>generally open-source</li>
+				<li>21st century</li>
+				<li>schema-less</li>
+			</ul>
+			<aside class="notes">
+				- Martin Fowler says that NoSQL cannot be defined, but we can define common characteristics
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Types of NoSQL Databases</h2>
+			<ul>
+				<li>
+					Key-Value
+					<ul>
+						<li>Memcached, Dynamo, Redis, BigTable</li>
+					</ul>
+				</li>
+				<li>
+					Column / Column-family:
+					<ul>
+						<li> Cassandra, HBase</li>
+					</ul>
+				</li>
+				<li>
+					Document
+					<ul>
+						<li>Couchbase, CouchDB, MongoDB</li>
+					</ul>
+				</li>
+				<li>
+					Graph
+					<ul>
+						<li>Neo4j, Titan, Giraph</li>
+					</ul>
+				</li>
+			</ul>
+			<aside class="notes">
+				- key value pair is just that<br />
+				- column-family is nested key values<br />
+				- document is generally stored as JSON objects (infinitely nested key/value pairs)<br />
+				- graph is highly relational and uses graph structures with nodes, properties and edges to represent data<br />
+				Q: What does Couch stand for?
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Aggregates</h2>
+			<aside class="notes">
+				- The whole objects we create are aggregates i.e. Order, Profile, Product, etc.
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<pre><code data-trim>
+// Order.cfc
+component accessors="true"{
+	property="order_id" type="numeric";
+	property="order_date" type="date";
+	property="products" type="array";
+	property="user_id" type="numeric";
+	property="billing_address_1" type="string";
+	property="billing_address_2" type="string";
+	property="billing_city" type="string";
+	property="billing_region_code" type="string";
+	property="billing_postal_code" type="string";
+	property="billing_country_code" type="string";
+	property="shipping_address_1" type="string";
+	property="shipping_address_2" type="string";
+	property="shipping_city" type="string";
+	property="shipping_region_code" type="string";
+	property="shipping_postal_code" type="string";
+	property="shipping_country_code" type="string";
+	property="card_number" type="string";
+	property="expiration_month" type="numeric";
+	property="expiration_year" type="numeric";
+}
+			</code></pre>
+			<aside class="notes">
+				- Any Class, Structure, Dictionary, HashMap, etc. is an aggregate
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<pre><code data-trim>
+// Order.cfc
+component accessors="true"{
+	property="order_id" type="numeric";
+	property="order_date" type="date";
+	property="products" type="array";
+	property="user" type="User";
+	property="billing" type="Address";
+	property="shipping" type="Address";
+	property="cc_info" type="CreditCard";
+}
+			</code></pre>
+			<aside class="notes">
+				- An aggregate can be comprised of multiple aggregates
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Normalization</h2>
+			<ul>
+				<li>Minimize data redundancy</li>
+				<li>Structured models</li>
+				<li>Logical queries</li>
+				<li>Fast inserts / updates</li>
+				<li>Less storage requirements</li>
+			</ul>
+			<aside class="notes">
+				- 1NF, 2NF, 3NF, etc.<br />
+				- Codds Laws<br />
+				Q: Based on the previous Order class, in a highly normalized RDBMS system what tables would you create?
+				- You have Users, Orders, Products, etc.
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<img src="assets/img/data-model-highly-normalized.png" style="max-height: 620px;">
+			<aside class="notes">
+				12 Tables<br />
+				2 completely different data models<br />
+				Provides Flexibility / Scalability<br />
+				Centralizes Emails, Phones, Addresses<br />
+				Lots of JOINs<br />
+				Simplified by leveraging Stored Procedures and Views<br />
+				ORM
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Denormalization</h2>
+			<ul>
+				<li>Minimize JOINs</li>
+				<li>Fast reads</li>
+				<li>Repeated data</li>
+				<li>More storage requirements</li>
+			</ul>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<img src="assets/img/data-model-denormalized.png">
+			<aside class="notes">
+				4 Tables<br />
+				Less JOINs<br />
+				Updates touch multiple tables and rows
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<img src="assets/img/cost-per-gigabyte-large.png">
+			<aside class="notes">
+				- 1980: 26MB hard drive, $5,000, $193,000 / GB<br />
+				- 1995: 2.9GB hard drive, $2,899, $990 / GB<br />
+				- 2005: 400GB hard drive, $300, $0.75 / GB<br />
+				- 2014: 3TB hard drive, $89.99, $0.03 / GB
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Transaction Processing</h2>
+			<aside class="notes">
+				- Foundation for all RDMBS is ACID
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>ACID</h2>
+			<div class="fragment">
+				<ul>
+					<li><u>A</u>tomicity</li>
+					<li><u>C</u>onsistency</li>
+					<li><u>I</u>solation</li>
+					<li><u>D</u>urability</li>
+				</ul>
+			</div>
+			<aside class="notes">
+				- Standard guarantee's that database transactions are reliably processed<br />
+				Q: What does ACID stand for?<br />
+				- Atomicity - All or nothing transactions, if one fails all fail<br />
+				- Consistency - All rules are followed, the database is in a consistent state throughout the transaction.<br />
+				- Isolation - Independent transactions, no access to incomplete transactions<br />
+				- Durability - Transaction is finished, will persist to disk and will survive system failures<br />
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>BASE</h2>
+			<div class="fragment">
+				<ul>
+					<li><u>B</u>asically <u>A</u>vailable</li>
+					<li><u>S</u>oft State</li>
+					<li><u>E</u>ventual Consistency</li>
+				</ul>
+			</div>
+			<aside class="notes">
+				- NoSQL systems rely on a more lenient model that is not as strict<br />
+				Q: What does BASE stand for?<br />
+				- Basically Available - There will always be a response regardless of success / failure. Data is distributed across multiple stores.<br />
+				- Soft state - Even when there is not input the system could be changing. Data consistency is a development problem not a database problem.<br />
+				- Eventual consistency: At some point in the future the data will eventually become consistent.
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Atomic Transactions</h2>
+			<aside class="notes">
+				- Atomic transactions are necessary in relational systems, nothing can come in the middle<br />
+				- Graph databases follow ACID updates<br />
+				- In Aggregate Orientated databases, the aggregates are the transaction boundary, they are already atomic, isolated and cannot conflict with themselves<br />
+				- It's only when multiple documents are being updated that you don't have ACID transactions<br />
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2 class="no-transform">Aggregate Orientated == NoSQL - Graph</h2>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Conflict Resolution</h2>
+			<aside class="notes">
+				- Exists in both RDBMS and NoSQL<br />
+				- 2 people updating the same record<br />
+				- Last one in wins is not a viable option<br />
+				- Version Stamp, CAS, Checksum, Etc.
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Consistency</h2>
+			<br />
+			<h3>Sharding vs. Replication</h3>
+			<aside class="notes">
+				- Sharding is a form of partitioning that takes a very large data set and breaks it up into smaller pieces, the data is only stored once<br />
+				- Replication is keeping full copies of the data on multiple machines<br />
+				- More nodes to serve more requests, fault tolerant<br />
+				- Introduces a new set of problems, which is consistency of distributed data
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>CAP Theorem</h2>
+			<div class="fragment">
+				<ul>
+					<li><u>C</u>onsistency</li>
+					<li><u>A</u>vailability</li>
+					<li><u>P</u>artition Tolerance</li>
+				</ul>
+				<br />
+				<br />
+				<p class="fragment">You can only provide 2 of the 3</p>
+			</div>
+			<aside class="notes">
+				- CAP theorem explains the divide between ACID and BASE<br />
+				- Defined in 2000 by Eric Brewer, also called Brewer's Theorem<br />
+				- Consistency - A read sees all completed writes / all nodes see all data at the same time<br />
+				- Availability - Regardless of success / fail a response is received<br />
+				- Partition Tolerance - Remains operational despite partitioning due to network failures
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<img src="assets/img/cap-theorem.svg" style="border: none; background: none; box-shadow: none;">
+			<aside class="notes">
+				- ACID falls into CP<br />
+				- BASE falls into AP<br />
+				- In a multi-node system you cannot be CA
+				- You have to choose between consistency and response time
+				- Single piece of data across 3 nodes example
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>RDBMS Schemas</h2>
+			<ul>
+				<li>Known Models</li>
+				<li>Fixed Fields</li>
+				<li>Data types</li>
+				<li>Database managed</li>
+				<li>Change can be difficult</li>
+			</ul>
+			<aside class="notes">
+				- When communicating with a DB you are looking for specific things name, email, price, qty, etc.<br />
+				- You assume these things exist, based on a defined schema in the database<br />
+				- You assume a field is a certain data type<br />
+				Q: Have you ever tried to get your DBA to change a schema?
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<video style="max-height: 650px;" controls src="assets/video/oakley-frozen-tennis-ball.mp4" type="video/mp4">
+			</video>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>NoSQL Schemas</h2>
+			<ul>
+				<li>Any type of data</li>
+				<li>Flexible</li>
+				<li>Application managed</li>
+				<li>Change is easy</li>
+			</ul>
+			<aside class="notes">
+				- The schema still exists, it is managed by the Application not the database<br />
+				- You can change the schema all the time, the database doesn't care it just stores data
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<video style="max-height: 650px;" controls src="assets/video/oakley-water.mp4" type="video/mp4">
+			</video>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Implicit Schema</h2>
+			<br />
+			<h2 class="fragment"><strike>Schema-less</strike></h2>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Data / Entity<br />Relationship Modeling</h2>
+			<ul class="fragment">
+				<li>Conceptual Data Model</li>
+				<li>Logical Data Model</li>
+				<li>Physical Data Model</li>
+			</ul>
+			<aside class="notes">
+				- https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Conceptual Data Model</h2>
+			<ul>
+				<li>Entity Names</li>
+				<li>Entity Relationships</li>
+			</ul>
+			<aside class="notes">
+				- Visualizes overall structure<br />
+				- Identifies main entities<br />
+				- Technology independent
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Modeling Notations</h2>
+			<img src="assets/img/er-modeling.png"/>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Conceptual Data Model</h2>
+			<img src="assets/img/conceptual-data-model.png"/>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Logical Data Model</h2>
+			<ul>
+				<li>Entity Names</li>
+				<li>Entity Relationships</li>
+				<li>Attributes</li>
+				<li>Primary / Foreign Keys</li>
+			</ul>
+			<aside class="notes">
+				- Technology independent
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Logical Data Model</h2>
+			<img src="assets/img/logical-data-model.png"/>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Physical Data Model</h2>
+			<ul>
+				<li>Entity -> Table Names</li>
+				<li>Attributes -> Field Names</li>
+				<li>Keys -> Primary / Foreign Keys</li>
+				<li>Data Types</li>
+			</ul>
+			<aside class="notes">
+				- Technology dependent
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Physical Data Model</h2>
+			<img src="assets/img/data-model-denormalized.png"/>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Physical Data Model in NoSQL</h2>
+			<div class="group">
+				<div class="column" style="width: 40%;">
+					<img src="assets/img/user-document.png">
+				</div>
+				<div class="column" style="width: 60%;">
+					<pre><code data-trim>{
+ "user_id": 123,
+ "username": "jdoe",
+ "first_name": "John",
+ "last_name": "Doe",
+ "email": "john.doe@mail.com",
+ "password": "88142f883cba2b527fdbbc60a943b899"
+}</code></pre>
+				</div>
+			</div>
+			<aside class="notes">
+				- There are very few physical data modeling tools for NoSQL<br />
+				- You can still model through JSON
+			</aside>
+		</section>
+		<!-- start of slide -->
+		<section>
+			<h2>Key Design</h2>
+			<ul>
+				<li>Prefixing</li>
+				<li>Predictable</li>
+				<li>Counter ID</li>
+				<li>Unpredictable</li>
+				<li>Combinations</li>
+			</ul>
+			<aside class="notes">
+				- Keys or Document IDs are an integral part of most NoSQL systems<br />
+				- More often than not you will use more than one
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Prefixing</h2>
+			<div class="group">
+				<div class="column">
+					<ul>
+						<li>user_123</li>
+						<li>u::john.doe@mail.com</li>
+						<li>user-123</li>
+						<li>user_123_orders</li>
+					</ul>
+				</div>
+				<div class="column">
+					<ul>
+						<li>order_123</li>
+						<li>o::john.doe@mail.com</li>
+						<li>product-123</li>
+						<li>user_123_orders</li>
+					</ul>
+				</div>
+			</div>
+			<aside class="notes">
+				- Logical way of grouping / name spacing key values<br />
+				- Be consistent<br />
+				- Think REST
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Predictable</h2>
+			<div class="group">
+				<div class="column">
+					<p>Key: user_john.doe@mail.com</p>
+					<img src="assets/img/user-document.png">
+				</div>
+				<div class="column">
+					<p>Key: user_jdoe</p>
+					<img src="assets/img/user-document.png">
+				</div>
+			</div>
+			<aside class="notes">
+				- Logical way of reconstructing a key based on known values<br />
+				- Email, Username, SKU, ISBN, etc.
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Counter ID</h2>
+			<div class="group">
+				<div class="column">
+					<p>Key: user_123</p>
+					<img src="assets/img/user-document.png">
+				</div>
+				<div class="column">
+					<p>Key: user_counter</p>
+					<img src="assets/img/counter-document.png">
+				</div>
+			</div>
+			<aside class="notes">
+				- Similar to and Identity column in RDBMS<br />
+				- 3 operations: get and increment counter document, write counter document, write user document
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Unpredictable</h2>
+			<p>Key: 23ad6bac-7599-4874-af98-7af734027834</p>
+			<img src="assets/img/user-document.png">
+			<aside class="notes">
+				- UUID
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Combinations</h2>
+			<ul>
+				<li>user_123_preferences</li>
+				<li>user_jdoe_order_23ad6bac-7599-4874-af98-7af734027834</li>
+				<li>user_john.doe@mail.com_comment_5664</li>
+			</ul>
+			<aside class="notes">
+				- Think REST
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Lookup Pattern</h2>
+			<div class="group">
+				<div class="column">
+					<p>Key: user_123</p>
+					<img src="assets/img/user-document.png">
+				</div>
+				<div class="column fragment">
+					<p>Key: user_john.doe@mail.com</p>
+					<img src="assets/img/user-lookup-document.png">
+					<p>Key: user_jdoe</p>
+					<img src="assets/img/user-lookup-document.png">
+				</div>
+			</div>
+			<aside class="notes">
+				Q: How do you find the users document by email or username?
+				- 3 operations: get and increment counter document, write counter document, write user document
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Lookup Pattern for Auth</h2>
+			<div class="group">
+				<div class="column">
+					<p>Key: user_123</p>
+					<img src="assets/img/user-document.png">
+				</div>
+				<div class="column">
+					<p>Key: user_john.doe@mail.com_<br />88142f883cba2b527fdbbc60a943b899</p>
+					<img src="assets/img/user-lookup-document.png">
+					<p>Key: user_jdoe_<br />88142f883cba2b527fdbbc60a943b899</p>
+					<img src="assets/img/user-lookup-document.png">
+				</div>
+			</div>
+			<aside class="notes">
+				- If the hashed document is not found no need to do anything further
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Embedding</h2>
+			<img src="assets/img/embedding-example.png" style="max-height: 450px;"/>
+			<aside class="notes">
+				- Single reads<br />
+				- Denormalized<br />
+				- Updates touch multiple documents<br />
+				- Potential for inconsistent data
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Referring / Linking</h2>
+			<div class="group">
+				<div class="column">
+					<p>Key: user_123</p>
+					<img src="assets/img/linking-friends-1.png">
+				</div>
+				<div class="column fragment">
+					<p>Key: user_456</p>
+					<img src="assets/img/linking-friends-2.png">
+				</div>
+			</div>
+			<aside class="notes">
+				- Multiple reads<br />
+				- Single updates<br />
+				- Normalish
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Parent-Referencing</h2>
+			<div class="group">
+				<div class="column">
+					<p>Key: product_000a9863-6015-4dc8-9ee16ec0a00f9ea9<br /><br /></p>
+					<img src="assets/img/parent-referencing-parent.png">
+				</div>
+				<div class="column fragment">
+					<p>Key: product_000a9863-6015-4dc8-9ee16ec0a00f9ea9_review_343234</p>
+					<img src="assets/img/parent-referencing-child.png">
+				</div>
+			</div>
+			<aside class="notes">
+				- There is no way to know how many reviews a product will have<br />
+				- In generally there is a limit to document size 15-20mb
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2 class="no-transform">Is SQL Going Away?</h2>
+			<br />
+			<h1 class="fragment">No</h1>
+			<aside class="notes">
+				- SQL and NoSQL are just tools in your toolbox
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Considerations</h2>
+			<ul>
+				<li>How do you work with your data?</li>
+				<li>Do you work with the same aggregates all the time?</li>
+				<li>What are you trying to achieve?</li>
+				<li>Where are you starting at?</li>
+				<li>Do you need finite data and highly complex relationships?</li>
+				<li>Is the tabular structure working for you?</li>
+				<li>Do you want to scale vertically or horizontally?</li>
+				<li>Does your data need to be data centralized or decentralized?</li>
+			</ul>
+			<aside class="note">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide
+		<section>
+			<h2>Hiring</h2>
+			<ul>
+				<li>ColdFusion Developers</li>
+				<li>iOS Developers</li>
+				<li>Android Developers</li>
+				<li>Hybrid Developers</li>
+				<li>UI/UX Developers</li>
+				<li>UI/UX Designers</li>
+				<li>Project Managers</li>
+			</ul>
+			<br />
+			<br />
+			<h3 class="no-transform"><a href="mailto:hrrecruiter@marketamerica.com">hrrecruiter@marketamerica.com</a></h3>
+			<aside class="notes">
+			</aside>
+		</section>-->
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h1>Questions?</h1>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>Slides available at:</h2>
+			<h2 class="no-transform no-shadow"><a href="https://goo.gl/NhrsYm">https://goo.gl/NhrsYm</a></h2>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+	</div>
+</div>
+<script src="bower_components/reveal-js/lib/js/head.min.js"></script>
+<script src="bower_components/reveal-js/js/reveal.min.js"></script>
+<script>
+	// Full list of configuration options available here:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+		// Parallax scrolling
+		//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+		// parallaxBackgroundSize: '2100px 900px',
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+			{ src: 'bower_components/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'bower_components/reveal-js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'bower_components/reveal-js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'bower_components/reveal-js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'bower_components/reveal-js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'bower_components/reveal-js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+		]
+	});
+</script>
+</body>
+</html>
