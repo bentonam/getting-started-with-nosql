@@ -8,10 +8,10 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" href="bower_components/reveal-js/css/reveal.min.css">
-	<link rel="stylesheet" href="bower_components/reveal-js/css/theme/default.css" id="theme">
+	<link rel="stylesheet" href="assets/vendors/reveal-js/css/reveal.min.css">
+	<link rel="stylesheet" href="assets/vendors/reveal-js/css/theme/default.css" id="theme">
 	<!-- For syntax highlighting -->
-	<link rel="stylesheet" href="bower_components/reveal-js/lib/css/zenburn.css">
+	<link rel="stylesheet" href="assets/vendors/reveal-js/lib/css/zenburn.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 	<script>
@@ -19,12 +19,12 @@
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = 'bower_components/reveal-js/css/print/pdf.css';
+			link.href = 'assets/vendors/reveal-js/css/print/pdf.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		}
 	</script>
 	<!--[if lt IE 9]>
-	<script src="bower_components/reveal-js/lib/js/html5shiv.js"></script>
+	<script src="assets/vendors/reveal-js/lib/js/html5shiv.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -34,32 +34,24 @@
 		<section>
 			<h3>Getting Started with </h3>
 			<h1 class="no-transform">NoSQL</h1>
+      <br />
+      <br />
 			<p>
-				<small>Created by <a href="#">Aaron Benton</a> / <a href="http://twitter.com/bentonam">@bentonam</a></small>
+				<small><a href="#">Aaron Benton</a> / <a href="http://twitter.com/bentonam">@bentonam</a></small>
 			</p>
+			<aside class="notes">
+        Who is playing w/ NoSQL?
+			</aside>
 		</section>
 		<!-- end of slide -->
 		<!-- start of slide --->
 		<section>
-			<h2>About Me</h2>
-			<div class="group">
-				<div class="column">
-					<ul>
-						<li>Shop.com / Market America</li>
-						<li>Mobile Architect</li>
-						<li>Kansas Jayhawks</li>
-					</ul>
-				</div>
-				<div class="column">
-					<img src="assets/img/oakley-stone-mountain.png" style="float: right; width: 75%">
-				</div>
-			</div>
+			<img src="assets/img/oakley-stone-mountain.png" style="width: 75%">
 		</section>
 		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
-			<h2>Topics</h2>
-			<ul>
+			<ul style="font-size: 1.6em; line-height: 1.1em">
 				<li>The problem with SQL</li>
 				<li>History of NoSQL</li>
 				<li>Database theories</li>
@@ -145,6 +137,8 @@
 			<h2 class="no-transform">Amazon DynamoDB</h2>
 			<aside class="notes">
 				- Were the first big unstructured data projects<br />
+        - BigTable was released in Feb. 2005
+        - DynamoDB was released in Jan. 2012
 				- Lead to NoSQL
 			</aside>
 		</section>
@@ -174,10 +168,14 @@
 		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
-			<img src="assets/img/chuck-norris.jpg">
+			<img src="assets/img/chuck-punch.gif">
 			<aside class="notes">
-				- Did it come from a Chuck Norris roundhouse kick to SQL?
+				- Did SQL take on Chuck Norris?
 			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
 		</section>
 		<!-- end of slide -->
 		<!-- start of slide -->
@@ -211,16 +209,16 @@
 			<h2>Types of NoSQL Databases</h2>
 			<ul>
 				<li>
-					Key-Value
+					<u>Key-Value</u>: Redis, Riak, Memcached
 				</li>
 				<li>
-					Column / Column-family
+					<u>Column-family</u>: Cassandra, HBase, BigTable
 				</li>
 				<li>
-					Document
+					<u>Document</u>: CouchDB, Couchbase, MongoDB
 				</li>
 				<li>
-					Graph
+				  <u>Graph</u>: Neo4J, Giraph, OrientD
 				</li>
 			</ul>
 			<aside class="notes">
@@ -325,11 +323,11 @@ component accessors="true"{
 		<!-- start of slide -->
 		<section>
 			<h2>Denormalization</h2>
-			<ul>
+			<ul class="fragment">
 				<li>Minimize JOINs</li>
 				<li>Fast reads</li>
 				<li>Repeated data</li>
-				<li>More storage requirements</li>
+				<li>More storage</li>
 			</ul>
 		</section>
 		<!-- end of slide -->
@@ -417,6 +415,7 @@ component accessors="true"{
 		<section>
 			<h2 class="no-transform">Aggregate Orientated == NoSQL - Graph</h2>
 			<aside class="notes">
+        - Martin Fowler describes these databases as "Aggregate Oriented"
 			</aside>
 		</section>
 		<!-- end of slide -->
@@ -557,7 +556,7 @@ component accessors="true"{
 				<li>Entity Relationships</li>
 			</ul>
 			<aside class="notes">
-				- Visualizes overall structure<br />
+				- Visualizes overall domain<br />
 				- Identifies main entities<br />
 				- Technology independent
 			</aside>
@@ -646,6 +645,39 @@ component accessors="true"{
 				- You can still model through JSON
 			</aside>
 		</section>
+    <!-- end of slide -->
+    <!-- start of slide -->
+		<section>
+			<pre style="font-size: .5em"><code data-trim>
+type: object
+properties:
+  _id:
+    type: string
+    description: The ID of the document
+  user_id:
+    type: integer
+    description: > An auto-incremented number from `users_counter`
+    that is the ID of the user
+  first_name:
+    type: string
+    description: The users first name
+  last_name:
+    type: string
+    description: The users last name
+  username:
+    type: string
+    description: A unique username chosen by the user
+  friends:
+    type: array
+    description: An array of user_id who the user is friends with
+  created_on:
+    type: integer
+    description: An epoch time in seconds when the user was created
+			</code></pre>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
 			<h2>Key Design</h2>
@@ -753,6 +785,13 @@ component accessors="true"{
 		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
+			<h2>Document Patterns</h2>
+			<aside class="notes">
+			</aside>
+		</section>
+		<!-- end of slide -->
+		<!-- start of slide -->
+		<section>
 			<h2>Lookup Pattern</h2>
 			<div class="group">
 				<div class="column">
@@ -845,6 +884,88 @@ component accessors="true"{
 		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
+			<h2>FakeIt</h2>
+      <p>Inspired by <a href="http://swagger.io">Swagger</a>, fakeit is a CLI data generator based on YAML models that outputs JSON, YAML, CSON, or CSV formats</p>
+      <br>
+			<pre class="bash"><code data-trim>npm install fakeit -g</code></pre>
+      <br>
+      <ul>
+        <li><a href="https://www.npmjs.com/package/fakeit">https://www.npmjs.com/package/fakeit</a></li>
+        <li><a href="https://github.com/bentonam/fakeit">https://github.com/bentonam/fakeit</a></li>
+        <li><a href="https://github.com/bentonam/fakeit-examples">https://github.com/bentonam/fakeit-examples</a></li>
+      </ul>
+			<aside class="notes">
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>FakeIt</h2>
+      <ul>
+        <li>Generate fixed or random number of documents per model</li>
+        <li>Event Transforms: Pre / Post Run, Pre / Post Build</li>
+        <li>Data generation via FakerJS, ChanceJS, Custom or Static</li>
+        <li>Data Typing</li>
+        <li>Model Dependencies</li>
+        <li>JSON, YAML, CSON, CSV output formats</li>
+        <li>Output to File, Zip, Couchbase or Sync Gateway</li>
+      </ul>
+			<aside class="notes">
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<pre class="yaml" style="font-size: .4em"><code data-trim>name: Users
+type: object
+key: _id
+data:
+  min: 200
+  max: 500
+  pre_run: >
+    globals.user_counter = 0;
+properties:
+  id:
+    type: string
+    data:
+      post_build: "return 'user_' + this.user_id;"
+  type:
+    type: string
+    data:
+      value: "user"
+  user_id:
+    type: integer
+    data:
+      build: "return ++globals.user_counter;"
+  name:
+    type: string
+    data:
+      fake: "{{name.firstName}} {{name.lastName}}"
+  phone:
+    type: string
+    data:
+      build: "return chance.phone();"
+  created_on:
+    type: string
+    data:
+      fake: "{{date.past}}"
+      post_build: "return new Date(this.created_on).toISOString();"</code></pre>
+			<aside class="notes">
+        - Models can use input data at the time of generation
+        - Generated Documents have access to all previously generated documents
+        - All models have globals available, including the current index
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>FakeIt Demo</h2>
+			<aside class="notes">
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
 			<h2 class="no-transform">Is SQL Going Away?</h2>
 			<br />
 			<h1 class="fragment">No</h1>
@@ -872,25 +993,6 @@ component accessors="true"{
 		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
-			<h2>Hiring</h2>
-			<ul>
-				<li>ColdFusion Developers</li>
-				<li>iOS Developers</li>
-				<li>Android Developers</li>
-				<li>Hybrid Developers</li>
-				<li>UI/UX Developers</li>
-				<li>UI/UX Designers</li>
-				<li>Project Managers</li>
-			</ul>
-			<br />
-			<br />
-			<h3 class="no-transform"><a href="mailto:hrrecruiter@marketamerica.com">hrrecruiter@marketamerica.com</a></h3>
-			<aside class="notes">
-			</aside>
-		</section>
-		<!-- end of slide -->
-		<!-- start of slide -->
-		<section>
 			<h1>Questions?</h1>
 			<aside class="notes">
 			</aside>
@@ -899,7 +1001,7 @@ component accessors="true"{
 		<!-- start of slide -->
 		<section>
 			<h2>Slides available at:</h2>
-			<h2 class="no-transform no-shadow"><a href="https://goo.gl/NhrsYm">https://goo.gl/NhrsYm</a></h2>
+			<h2 class="no-transform no-shadow"><a href="http://bit.ly/gsw-nosql">bit.ly/gsw-nosql</a></h2>
 			<aside class="notes">
 			</aside>
 		</section>
@@ -920,8 +1022,8 @@ component accessors="true"{
 		<!-- end of slide -->
 	</div>
 </div>
-<script src="bower_components/reveal-js/lib/js/head.min.js"></script>
-<script src="bower_components/reveal-js/js/reveal.min.js"></script>
+<script src="assets/vendors/reveal-js/lib/js/head.min.js"></script>
+<script src="assets/vendors/reveal-js/js/reveal.min.js"></script>
 <script>
 	// Full list of configuration options available here:
 	// https://github.com/hakimel/reveal.js#configuration
@@ -937,12 +1039,12 @@ component accessors="true"{
 		// parallaxBackgroundSize: '2100px 900px',
 		// Optional libraries used to extend on reveal.js
 		dependencies: [
-			{ src: 'bower_components/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-			{ src: 'bower_components/reveal-js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			{ src: 'bower_components/reveal-js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			{ src: 'bower_components/reveal-js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-			{ src: 'bower_components/reveal-js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-			{ src: 'bower_components/reveal-js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+			{ src: 'assets/vendors/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'assets/vendors/reveal-js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'assets/vendors/reveal-js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'assets/vendors/reveal-js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'assets/vendors/reveal-js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+			{ src: 'assets/vendors/reveal-js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 		]
 	});
 </script>
