@@ -37,7 +37,7 @@
       <br />
       <br />
 			<p>
-				<small><a href="#">Aaron Benton</a> / <a href="http://twitter.com/bentonam">@bentonam</a></small>
+				<small><a href="#">Aaron Benton</a> / <a href="http://twitter.com/bentonam">@bentonam</a> / <a href="http://github.com/bentonam">github.com/bentonam</a></small>
 			</p>
 			<aside class="notes">
         Who is playing w/ NoSQL?
@@ -680,6 +680,88 @@ properties:
 		<!-- end of slide -->
 		<!-- start of slide -->
 		<section>
+			<h2>FakeIt</h2>
+      <p>Inspired by <a href="http://swagger.io">Swagger</a>, fakeit is a CLI data generator based on YAML models that outputs JSON, YAML, CSON, or CSV formats</p>
+      <br>
+			<pre class="bash"><code data-trim>npm install fakeit -g</code></pre>
+      <br>
+      <ul>
+        <li><a href="https://www.npmjs.com/package/fakeit">https://www.npmjs.com/package/fakeit</a></li>
+        <li><a href="https://github.com/bentonam/fakeit">https://github.com/bentonam/fakeit</a></li>
+        <li><a href="https://github.com/bentonam/fakeit-examples">https://github.com/bentonam/fakeit-examples</a></li>
+      </ul>
+			<aside class="notes">
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>FakeIt</h2>
+      <ul>
+        <li>Generate fixed or random number of documents per model</li>
+        <li>Event Transforms: Pre / Post Run, Pre / Post Build</li>
+        <li>Data generation via FakerJS, ChanceJS, Custom or Static</li>
+        <li>Data Typing</li>
+        <li>Model Dependencies</li>
+        <li>JSON, YAML, CSON, CSV output formats</li>
+        <li>Output to File, Zip, Couchbase or Sync Gateway</li>
+      </ul>
+			<aside class="notes">
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<pre class="yaml" style="font-size: .4em"><code data-trim>name: Users
+type: object
+key: _id
+data:
+  min: 200
+  max: 500
+  pre_run: >
+    globals.user_counter = 0;
+properties:
+  id:
+    type: string
+    data:
+      post_build: "return 'user_' + this.user_id;"
+  type:
+    type: string
+    data:
+      value: "user"
+  user_id:
+    type: integer
+    data:
+      build: "return ++globals.user_counter;"
+  name:
+    type: string
+    data:
+      fake: "{{name.firstName}} {{name.lastName}}"
+  phone:
+    type: string
+    data:
+      build: "return chance.phone();"
+  created_on:
+    type: string
+    data:
+      fake: "{{date.past}}"
+      post_build: "return new Date(this.created_on).toISOString();"</code></pre>
+			<aside class="notes">
+        - Models can use input data at the time of generation
+        - Generated Documents have access to all previously generated documents
+        - All models have globals available, including the current index
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
+			<h2>FakeIt Demo</h2>
+			<aside class="notes">
+			</aside>
+		</section>
+    <!-- end of slide -->
+		<!-- start of slide -->
+		<section>
 			<h2>Key Design</h2>
 			<ul>
 				<li>Prefixing</li>
@@ -882,88 +964,6 @@ properties:
 			</aside>
 		</section>
 		<!-- end of slide -->
-		<!-- start of slide -->
-		<section>
-			<h2>FakeIt</h2>
-      <p>Inspired by <a href="http://swagger.io">Swagger</a>, fakeit is a CLI data generator based on YAML models that outputs JSON, YAML, CSON, or CSV formats</p>
-      <br>
-			<pre class="bash"><code data-trim>npm install fakeit -g</code></pre>
-      <br>
-      <ul>
-        <li><a href="https://www.npmjs.com/package/fakeit">https://www.npmjs.com/package/fakeit</a></li>
-        <li><a href="https://github.com/bentonam/fakeit">https://github.com/bentonam/fakeit</a></li>
-        <li><a href="https://github.com/bentonam/fakeit-examples">https://github.com/bentonam/fakeit-examples</a></li>
-      </ul>
-			<aside class="notes">
-			</aside>
-		</section>
-    <!-- end of slide -->
-		<!-- start of slide -->
-		<section>
-			<h2>FakeIt</h2>
-      <ul>
-        <li>Generate fixed or random number of documents per model</li>
-        <li>Event Transforms: Pre / Post Run, Pre / Post Build</li>
-        <li>Data generation via FakerJS, ChanceJS, Custom or Static</li>
-        <li>Data Typing</li>
-        <li>Model Dependencies</li>
-        <li>JSON, YAML, CSON, CSV output formats</li>
-        <li>Output to File, Zip, Couchbase or Sync Gateway</li>
-      </ul>
-			<aside class="notes">
-			</aside>
-		</section>
-    <!-- end of slide -->
-		<!-- start of slide -->
-		<section>
-			<pre class="yaml" style="font-size: .4em"><code data-trim>name: Users
-type: object
-key: _id
-data:
-  min: 200
-  max: 500
-  pre_run: >
-    globals.user_counter = 0;
-properties:
-  id:
-    type: string
-    data:
-      post_build: "return 'user_' + this.user_id;"
-  type:
-    type: string
-    data:
-      value: "user"
-  user_id:
-    type: integer
-    data:
-      build: "return ++globals.user_counter;"
-  name:
-    type: string
-    data:
-      fake: "{{name.firstName}} {{name.lastName}}"
-  phone:
-    type: string
-    data:
-      build: "return chance.phone();"
-  created_on:
-    type: string
-    data:
-      fake: "{{date.past}}"
-      post_build: "return new Date(this.created_on).toISOString();"</code></pre>
-			<aside class="notes">
-        - Models can use input data at the time of generation
-        - Generated Documents have access to all previously generated documents
-        - All models have globals available, including the current index
-			</aside>
-		</section>
-    <!-- end of slide -->
-		<!-- start of slide -->
-		<section>
-			<h2>FakeIt Demo</h2>
-			<aside class="notes">
-			</aside>
-		</section>
-    <!-- end of slide -->
 		<!-- start of slide -->
 		<section>
 			<h2 class="no-transform">Is SQL Going Away?</h2>
